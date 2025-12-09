@@ -1,12 +1,12 @@
-// internal/repository/mongodb/user_repository.go
 package mongodb
 
 import (
-	"auth-service/internal/entity"
 	"context"
+	"go-auth-backend/internal/entity"
 
-	"go.mongodb.org/mongo-driver/v2/bson"
-	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type UserRepository interface {
@@ -15,18 +15,16 @@ type UserRepository interface {
 }
 
 type userRepository struct {
-	collection *mongo.Collection
+	coll *mongo.Collection
 }
 
 func NewUserRepository(db *mongo.Database) UserRepository {
-	return &userRepository{
-		collection: db.Collection("users"),
-	}
+	return &userRepository{coll: db.Collection("users")}
 }
 
 func (r *userRepository) FindByEmail(ctx context.Context, email string) (*entity.User, error) {
 	var user entity.User
-	err := r.collection.FindOne(ctx, bson.M{"email": email}).Decode(&user)
+	err := r.coll.FindOne(ctx, bson.M{"email": email}).Decode(&user)
 	if err == mongo.ErrNoDocuments {
 		return nil, nil
 	}
@@ -37,6 +35,7 @@ func (r *userRepository) FindByEmail(ctx context.Context, email string) (*entity
 }
 
 func (r *userRepository) Create(ctx context.Context, user *entity.User) error {
-	_, err := r.collection.InsertOne(ctx, user)
+	user.ID = primitive.NewObjectID()
+	_, err := r.coll.InsertOne(ctx, user)
 	return err
 }
