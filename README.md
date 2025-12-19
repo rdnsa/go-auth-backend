@@ -2,7 +2,7 @@
 
 A simple yet production-ready authentication API built with Go, implementing Clean Architecture, JWT authentication, and MongoDB as the primary database.
 
-✨ Features
+## ✨ Features
 
 User registration
 
@@ -18,7 +18,7 @@ Input validation
 
 Clean Architecture structure (entity → usecase → repository → handler)
 
-🧩 Tech Stack
+## 🧩 Tech Stack
 
 Go 1.23+
 
@@ -108,7 +108,7 @@ Response Example:
   }
 }
 
-🧠 View Data in MongoDB Compass
+## 🧠 View Data in MongoDB Compass
 
 Open MongoDB Compass
 
@@ -121,7 +121,7 @@ Select database: auth_db
 
 Open collection: users
 
-🧾 Example .env
+## 🧾 Example .env
 APP_PORT=8080
 JWT_SECRET=super-secret-jwt-key-1234567890abcdef
 JWT_EXPIRED_HOURS=72
@@ -130,7 +130,7 @@ MONGO_URI=mongodb://localhost:27017
 MONGO_DB=auth_db
 MONGO_USER_COLLECTION=users
 
-🧭 Upcoming Features
+## 🧭 Upcoming Features
 
 Protected routes + JWT middleware (/profile)
 
@@ -142,7 +142,7 @@ Unit & integration tests
 
 Free deployment options (Railway, Render, Fly.io)
 
-📜 License
+### 📜 License
 
 MIT © 2025
 Built with Go and a spirit of learning.
