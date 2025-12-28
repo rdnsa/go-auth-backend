@@ -2,6 +2,7 @@
 
 A simple yet production-ready authentication API built with Go, implementing Clean Architecture, JWT authentication, and MongoDB as the primary database.
 
+
 ## ✨Features
 
 User registration
